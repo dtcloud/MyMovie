@@ -7,6 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "HomeViewController.h"
+#import "RecommandViewController.h"
+#import "SettingViewController.h"
+#import "LibraryViewController.h"
+
+#import "UIImage+UIImageExtras.h"
 
 @implementation AppDelegate
 
@@ -20,6 +26,39 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    CGSize imageSize = CGSizeMake(30.0, 30.0);
+    //首页
+    HomeViewController *home = [[HomeViewController alloc] init];
+//    home.tabBarItem.title = @"首页";
+    home.title = @"首页";
+    home.tabBarItem.image = [[UIImage imageNamed:@"home15.png"] imageByScalingToSize:imageSize];
+    UINavigationController *homeNav = [[UINavigationController alloc] initWithRootViewController:home];
+    //推荐
+    RecommandViewController *recommand = [[RecommandViewController alloc] init];
+//    recommand.tabBarItem.title = @"推荐";
+    recommand.title = @"推荐";
+    recommand.tabBarItem.image = [[UIImage imageNamed:@"bookmark.png"] imageByScalingToSize:imageSize];
+    UINavigationController *recommandNav = [[UINavigationController alloc] initWithRootViewController:recommand];
+    //片库
+    LibraryViewController *library = [[LibraryViewController alloc] init];
+    library.tabBarItem.title = @"片库";
+    library.title = @"片库";
+    library.tabBarItem.image = [[UIImage imageNamed:@"professional.png"] imageByScalingToSize:imageSize];
+    UINavigationController *libraryNav = [[UINavigationController alloc] initWithRootViewController:library];
+    //设置
+    SettingViewController *setting = [[SettingViewController alloc] init];
+//    setting.tabBarItem.title = @"设置";
+    setting.title = @"设置";
+    setting.tabBarItem.image = [[UIImage imageNamed:@"settings.png"] imageByScalingToSize:imageSize];
+    UINavigationController *settingNav = [[UINavigationController alloc] initWithRootViewController:setting];
+    
+    UITabBarController *tabBarVC = [[UITabBarController alloc] init];
+    tabBarVC.viewControllers = [NSArray arrayWithObjects:homeNav,recommandNav,libraryNav,settingNav, nil];
+    
+    self.window.rootViewController = tabBarVC;
+    
+    
     return YES;
 }
 
